@@ -8,13 +8,31 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+<!-- Firebase CDN -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+  import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD5JFl4rzZSDJiWUMuAHlcuQ1rfl9UEKG8",
+    authDomain: "bastetaks-f504c.firebaseapp.com",
+    projectId: "bastetaks-f504c",
+    storageBucket: "bastetaks-f504c.firebasestorage.app",
+    messagingSenderId: "797678107422",
+    appId: "1:797678107422:web:59ee72846c5911b8e1670f",
+    measurementId: "G-P6ZSHWC3S2"
+  };
+
+  window.firebaseApp = initializeApp(firebaseConfig);
+  window.analytics = getAnalytics(window.firebaseApp);
+  window.db = getFirestore(window.firebaseApp);
+  window.auth = getAuth(window.firebaseApp);
+</script>
+
 </head>
 <body>
-
 <header id="header">
   <div class="header-left">TaskMaster Pro</div>
   <div class="header-right">
@@ -28,6 +46,6 @@
 
 <div id="app"></div>
 
-<script src="app.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
