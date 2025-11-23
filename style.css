@@ -1,40 +1,17 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:"Tajawal",sans-serif;}
 body{background: linear-gradient(135deg,#f0f4ff,#e6f0ff);direction:rtl;}
-
-/* Header */
-header{
-  background: linear-gradient(135deg,#6a11cb,#2575fc);
-  color:#fff;
-  padding:15px 20px;
-  position:fixed;
-  top:0;left:0;width:100%;z-index:1000;
-  display:flex;justify-content:space-between;align-items:center;
-  border-radius:0 0 15px 15px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.25);
-  display:none;
-}
+header{background: linear-gradient(135deg,#6a11cb,#2575fc);color:#fff;padding:15px 20px;position:fixed;top:0;left:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;border-radius:0 0 15px 15px;box-shadow:0 6px 20px rgba(0,0,0,0.25);display:none;}
 .header-left{font-size:24px;font-weight:bold;}
 .header-right{display:flex;gap:12px;}
-.header-right button{
-  display:flex;align-items:center;gap:6px;
-  background: linear-gradient(45deg,#ff416c,#ff4b2b);
-  border:none;padding:8px 16px;border-radius:12px;color:white;font-weight:bold;font-size:14px;
-  cursor:pointer;transition:0.3s, transform 0.3s;box-shadow:0 4px 15px rgba(0,0,0,0.2);
-}
+.header-right button{display:flex;align-items:center;gap:6px;background: linear-gradient(45deg,#ff416c,#ff4b2b);border:none;padding:8px 16px;border-radius:12px;color:white;font-weight:bold;font-size:14px;cursor:pointer;transition:0.3s, transform 0.3s;box-shadow:0 4px 15px rgba(0,0,0,0.2);}
 .header-right button:hover{transform: scale(1.08);box-shadow:0 6px 20px rgba(0,0,0,0.35);}
-
-/* Container */
 .container{width:95%;margin:auto;margin-top:90px;}
 .box{background:white;padding:20px;border-radius:18px;box-shadow:0 6px 20px rgba(0,0,0,0.15);margin-bottom:25px;transition: transform 0.3s, box-shadow 0.3s;}
 .box:hover{transform: translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,0.2);}
-
-/* Inputs & Buttons */
 input,select,button{width:100%;padding:12px;border:none;border-radius:10px;margin-top:8px;font-size:14px;font-weight:500;}
 input,select{background:#f0f4ff;}
 button{transition:0.3s;cursor:pointer;}
 button:hover{transform:scale(1.02);}
-
-/* Tasks */
 .task{background: linear-gradient(145deg,#ffffff,#dfe6ff);border-radius:18px;padding:15px 20px;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,0.12);display:flex;align-items:center;transition: transform 0.3s, box-shadow 0.3s;}
 .task:hover{transform: translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.18);}
 .task i{font-size:30px;color:#6a11cb;margin-left:15px; transition: 0.3s;}
@@ -43,15 +20,11 @@ button:hover{transform:scale(1.02);}
 .task h3{font-size:18px;margin-bottom:6px;color:#2575fc;}
 .task p{margin-bottom:4px;font-size:14px;color:#333;}
 .locked{opacity:0.4;}
-
-/* Account Page */
 .account-title{text-align:center;font-size:24px;font-weight:bold;color:#2575fc;margin-bottom:20px;}
 .account-box{background: linear-gradient(145deg,#ffffff,#e0ebff);border-radius:20px;padding:20px;box-shadow:0 6px 20px rgba(0,0,0,0.18);}
 .account-box p{font-size:16px;color:#333;margin:10px 0;}
 .account-box .label{font-weight:bold;color:#6a11cb;margin-bottom:4px;display:block;font-size:14px;}
 .back-btn{background:#2575fc;margin-top:12px;color:white;border-radius:12px;padding:10px;font-weight:bold;cursor:pointer;}
-
-/* Admin Panel */
 .admin-box{background:#fff3e6;padding:20px;border-radius:18px;box-shadow:0 6px 20px rgba(0,0,0,0.18);}
 .admin-box h2{color:#ff4b2b;text-align:center;margin-bottom:20px;}
 .admin-request{display:flex;flex-direction:column;gap:12px;border:1px solid #f0c1a0;padding:12px;border-radius:12px;background:#fff7f0;}
@@ -59,14 +32,4 @@ button:hover{transform:scale(1.02);}
 .admin-request button{width:48%;margin-top:5px;padding:8px;background:#2575fc;color:white;border-radius:10px;cursor:pointer;}
 .admin-request button.reject{background:#ff416c;}
 .admin-request p{margin:4px 0;font-size:14px;color:#333;}
-
-/* Media Queries */
-@media(max-width:600px){
-  header{font-size:20px;padding:12px;}
-  .header-right button{padding:6px 10px;font-size:12px;}
-  .header-left{font-size:20px;}
-  .task h3{font-size:16px;}
-  .task i{font-size:24px;}
-  .account-title{font-size:20px;}
-  .admin-request img{max-width:100%;}
-}
+@media(max-width:600px){header{font-size:20px;padding:12px;}.header-right button{padding:6px 10px;font-size:12px;}.header-left{font-size:20px;}.task h3{font-size:16px;}.task i{font-size:24px;}.account-title{font-size:20px;}.admin-request img{max-width:100%;}}
