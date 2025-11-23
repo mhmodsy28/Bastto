@@ -7,7 +7,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script type="module" src="app.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyD5JFl4rzZSDJiWUMuAHlcuQ1rfl9UEKG8",
+    authDomain: "bastetaks-f504c.firebaseapp.com",
+    projectId: "bastetaks-f504c",
+    storageBucket: "bastetaks-f504c.appspot.com",
+    messagingSenderId: "797678107422",
+    appId: "1:797678107422:web:59ee72846c5911b8e1670f",
+    measurementId: "G-P6ZSHWC3S2"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+
 </head>
 <body>
 
@@ -24,5 +42,6 @@
 
 <div id="app"></div>
 
+<script src="app.js"></script>
 </body>
 </html>
