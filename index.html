@@ -1,53 +1,168 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TaskMaster Pro</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>موقع المهام</title>
 
-<!-- Firebase SDK التقليدية -->
-<script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js"></script>
+<!-- Firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js"></script>
+
+<style>
+body{
+    font-family: sans-serif;
+    background:#f2f2f2;
+    margin:0;
+    padding:0;
+    direction:rtl;
+}
+.container{
+    width:90%;
+    max-width:400px;
+    margin:auto;
+    margin-top:40px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 0 15px #0002;
+}
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+button{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    background:#007bff;
+    color:white;
+    border:0;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+button:hover{
+    background:#0069d9;
+}
+
+.task{
+    background:#fff;
+    padding:15px;
+    border-radius:10px;
+    margin:10px 0;
+    box-shadow:0 0 8px #0002;
+}
+#tasks{
+    display:none;
+}
+#logout{
+    background:red;
+}
+</style>
 </head>
+
 <body>
 
-<header id="header">
-  <div class="header-left">TaskMaster Pro</div>
-  <div class="header-right">
-    <button onclick="accountPage()"><i class="fa-solid fa-user"></i> الحساب</button>
-    <button onclick="depositPage()"><i class="fa-solid fa-credit-card"></i> إيداع</button>
-    <button onclick="withdrawPage()"><i class="fa-solid fa-wallet"></i> سحب</button>
-    <button onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
-  </div>
-</header>
+<div class="container" id="auth-box">
+    <h2>تسجيل الدخول</h2>
+    <input id="login-email" type="email" placeholder="البريد الإلكتروني">
+    <input id="login-pass" type="password" placeholder="كلمة المرور">
+    <button onclick="login()">تسجيل الدخول</button>
 
-<div id="app"></div>
+    <h3>إنشاء حساب</h3>
+    <input id="reg-email" type="email" placeholder="البريد الإلكتروني">
+    <input id="reg-pass" type="password" placeholder="كلمة المرور">
+    <button onclick="register()">إنشاء حساب</button>
+</div>
 
-<!-- Firebase Config + App JS -->
+<div class="container" id="tasks">
+    <h2>مرحبا بك!</h2>
+    <button id="logout" onclick="logout()">تسجيل الخروج</button>
+    <h3>قائمة المهام (25 مهمة)</h3>
+    <div id="task-list"></div>
+</div>
+
 <script>
-  // إعداد Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyD5JFl4rzZSDJiWUMuAHlcuQ1rfl9UEKG8",
-    authDomain: "bastetaks-f504c.firebaseapp.com",
-    projectId: "bastetaks-f504c",
-    storageBucket: "bastetaks-f504c.firebasestorage.app",
-    messagingSenderId: "797678107422",
-    appId: "1:797678107422:web:59ee72846c5911b8e1670f",
-    measurementId: "G-P6ZSHWC3S2"
-  };
+// -------------------------------
+// 🔥 إعداد فايرباس
+// -------------------------------
+const firebaseConfig = {
+    apiKey: "AIzaSyC6soR9-mJwcKJ1pQZ1rwfQKd0uD9kR7NA",
+    authDomain: "tasks-29d44.firebaseapp.com",
+    projectId: "tasks-29d44",
+    storageBucket: "tasks-29d44.appspot.com",
+    messagingSenderId: "1021392653002",
+    appId: "1:1021392653002:web:cdce3e5c066207f8af976a"
+};
 
-  // تهيئة Firebase
-  firebase.initializeApp(firebaseConfig);
-  const analytics = firebase.analytics();
-  const auth = firebase.auth();
-  const db = firebase.firestore();
+const app = firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// -------------------------------
+// 🔐 تسجيل الدخول
+// -------------------------------
+function login(){
+    const email = document.getElementById("login-email").value;
+    const pass  = document.getElementById("login-pass").value;
+
+    auth.signInWithEmailAndPassword(email, pass)
+    .then(()=>{
+        showTasks();
+    })
+    .catch(err=>alert("خطأ: " + err.message));
+}
+
+// -------------------------------
+// 🆕 إنشاء حساب
+// -------------------------------
+function register(){
+    const email = document.getElementById("reg-email").value;
+    const pass  = document.getElementById("reg-pass").value;
+
+    auth.createUserWithEmailAndPassword(email, pass)
+    .then(()=>{
+        alert("تم إنشاء الحساب بنجاح");
+        showTasks();
+    })
+    .catch(err=>alert("خطأ: " + err.message));
+}
+
+// -------------------------------
+// 🚪 تسجيل خروج
+// -------------------------------
+function logout(){
+    auth.signOut();
+    document.getElementById("auth-box").style.display = "block";
+    document.getElementById("tasks").style.display = "none";
+}
+
+// -------------------------------
+// ✔ عرض المهام
+// -------------------------------
+function showTasks() {
+    document.getElementById("auth-box").style.display = "none";
+    document.getElementById("tasks").style.display = "block";
+
+    let list = "";
+    for(let i=1; i<=25; i++){
+        list += `<div class="task">مهمة رقم ${i}</div>`;
+    }
+    document.getElementById("task-list").innerHTML = list;
+}
+
+// -------------------------------
+// 🔄 مراقبة حالة المستخدم
+// -------------------------------
+auth.onAuthStateChanged(user=>{
+    if(user){
+        showTasks();
+    }
+});
 </script>
 
-<script src="app.js"></script>
 </body>
 </html>
