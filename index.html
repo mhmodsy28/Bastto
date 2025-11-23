@@ -8,13 +8,29 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- Firebase CDN -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-  import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+<!-- Firebase SDK التقليدية -->
+<script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js"></script>
+</head>
+<body>
 
+<header id="header">
+  <div class="header-left">TaskMaster Pro</div>
+  <div class="header-right">
+    <button onclick="accountPage()"><i class="fa-solid fa-user"></i> الحساب</button>
+    <button onclick="depositPage()"><i class="fa-solid fa-credit-card"></i> إيداع</button>
+    <button onclick="withdrawPage()"><i class="fa-solid fa-wallet"></i> سحب</button>
+    <button onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
+  </div>
+</header>
+
+<div id="app"></div>
+
+<!-- Firebase Config + App JS -->
+<script>
+  // إعداد Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyD5JFl4rzZSDJiWUMuAHlcuQ1rfl9UEKG8",
     authDomain: "bastetaks-f504c.firebaseapp.com",
@@ -25,27 +41,13 @@
     measurementId: "G-P6ZSHWC3S2"
   };
 
-  window.firebaseApp = initializeApp(firebaseConfig);
-  window.analytics = getAnalytics(window.firebaseApp);
-  window.db = getFirestore(window.firebaseApp);
-  window.auth = getAuth(window.firebaseApp);
+  // تهيئة Firebase
+  firebase.initializeApp(firebaseConfig);
+  const analytics = firebase.analytics();
+  const auth = firebase.auth();
+  const db = firebase.firestore();
 </script>
 
-</head>
-<body>
-<header id="header">
-  <div class="header-left">TaskMaster Pro</div>
-  <div class="header-right">
-    <button onclick="accountPage()"><i class="fa-solid fa-user"></i> الحساب</button>
-    <button onclick="depositPage()"><i class="fa-solid fa-credit-card"></i> إيداع</button>
-    <button onclick="withdrawPage()"><i class="fa-solid fa-wallet"></i> سحب</button>
-    <button onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
-    <button onclick="adminLogin()"><i class="fa-solid fa-shield"></i> إدارة</button>
-  </div>
-</header>
-
-<div id="app"></div>
-
-<script type="module" src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
