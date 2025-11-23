@@ -86,7 +86,7 @@ button:hover{transform:scale(1.02);}
 .task-content{flex:1;}
 .task h3{font-size:18px;margin-bottom:6px;color:#2575fc;}
 .task p{margin-bottom:4px;font-size:14px;color:#333;}
-.locked{opacity:0.4;}
+.locked{opacity:0.4;pointer-events:none;}
 
 /* Account Page */
 .account-title{text-align:center;font-size:24px;font-weight:bold;color:#2575fc;margin-bottom:20px;}
