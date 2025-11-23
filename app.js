@@ -285,4 +285,4 @@ async function adminLogin(){
   const usersSnapshot = await getDoc(doc(db, "users", currentUser.uid));
   // For simplicity, you can list deposits of all users manually or expand later
   alert("لوحة الإدارة جاهزة (يمكن التوسيع لاحقاً)");
-}
+    }
